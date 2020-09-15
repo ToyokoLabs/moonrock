@@ -1,0 +1,5 @@
+
+# This is a SAMPLE localconfig.py file. Please adapt to your needs and remove .SAMPLE extension for it to work.
+
+# Chromedriver path
+DRIVER_PATH = 'YOU PATH HERE/chromedriver'
