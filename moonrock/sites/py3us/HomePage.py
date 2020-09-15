@@ -15,5 +15,10 @@ class HomePage(BasePage):
  
     @property
     def main_title(self):
-        mt = self.driver.find_elements_by_css_selector(".widget-text")
+        mt = self.driver.find_elements_by_class_name("maintitle")
         return mt[0]
+
+    @property
+    def order_buttons(self):
+        obs = self.driver.find_elements_by_class_name("orderbutton")
+        return obs
