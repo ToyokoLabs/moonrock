@@ -16,18 +16,17 @@ class SearchDrug(unittest.TestCase):
     def setUp(self):
         global driver
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-        #self.base_url = os.environ.get('RXENV', 'https://www.goodrx.com')
         driver.get(py3us.URL)
-        # Set the cookie to prevent AB testing
-        driver.add_cookie({
-            'name': 'grx_internal_user',
-            'value': 'true'
-        })
-        driver.refresh()
  
     def test_BasicHome(self):
         home_page = HomePage(driver)
+        title = home_page.main_title.text
+        # Check for title
+        self.assertEqual(title, 'Python for Bioinformatics')
+        # Check that title is displayed
+        self.assertTrue(home_page.main_title.is_displayed)
 
+        
 
     def tearDown(self):
         driver.quit()

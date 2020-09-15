@@ -16,4 +16,4 @@ class HomePage(BasePage):
     @property
     def main_title(self):
         mt = self.driver.find_elements_by_css_selector(".widget-text")
-        return mt[1]
+        return mt[0]
