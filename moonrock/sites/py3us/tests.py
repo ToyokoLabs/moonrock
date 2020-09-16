@@ -4,10 +4,10 @@ import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-from localconfig import DRIVER_PATH
+from config import DRIVER_PATH
+from config import URL
 
-from sites import py3us as site
-from sites.py3us.HomePage import HomePage
+from pages.HomePage import HomePage
 
 
 
@@ -17,7 +17,7 @@ class MainElements(unittest.TestCase):
     def setUp(self):
         global driver
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-        driver.get(site.URL)
+        driver.get(URL)
  
     def test_BasicHome(self):
         home_page = HomePage(driver)
