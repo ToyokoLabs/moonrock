@@ -4,11 +4,9 @@ import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-from config import DRIVER_PATH
-from config import URL
+from config import DRIVER_PATH, URL
 
 from pages.HomePage import HomePage
-
 
 
 
