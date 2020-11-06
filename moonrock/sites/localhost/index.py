@@ -3,17 +3,12 @@ app = Flask(__name__)
 
 
 
-@app.route('/')
-def hello_world():
-    print(url_for('static', filename='style.css'))
-    return render_template('indexblog.html')
-
-@app.route('/indexblog')
+@app.route('/explore')
 def indexblog():
     return render_template('indexblog.html')
 
 
-@app.route('/carousel')
+@app.route('/')
 def carousel():
     return render_template('carousel.html')
 
@@ -21,10 +16,10 @@ def carousel():
 def checkout():
     return render_template('checkout.html')
 
-@app.route('/album')
+@app.route('/learn')
 def album():
-    return render_template('album.html')
+    return render_template('learn.tpl')
 
-@app.route('/pricing')
+@app.route('/subscribe')
 def pricing():
     return render_template('pricing.html')
