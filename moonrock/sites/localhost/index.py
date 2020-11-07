@@ -14,15 +14,15 @@ def carousel():
 
 @app.route('/checkout')
 def checkout():
-    return render_template('checkout.html')
+    return render_template('checkout.html', checkout=True)
 
 @app.route('/learn')
 def album():
-    return render_template('learn.tpl')
+    return render_template('learn.html', learn=True)
 
 @app.route('/subscribe')
 def pricing():
-    return render_template('pricing.html')
+    return render_template('pricing.html', subscribe=True)
 
 @app.route('/old')
 def old():

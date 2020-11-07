@@ -6,7 +6,25 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Carousel Template · Bootstrap</title>
+    <title>
+    {% if blog %}
+    MoonRock: Blog
+    {% endif %}
+    {% if home %}
+    MoonRock
+    {% endif %}
+    {% if checkout %}
+    MoonRock: Checkout
+    {% endif %}
+    {% if learn %}
+    MoonRock: Learn
+    {% endif %}
+    {% if subscribe %}
+    MoonRock: Subscribe
+    {% endif %}
+
+    </title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
@@ -53,20 +71,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="carousel">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item {% if home %}active{% endif %}">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {% if blog %}active{% endif %}">
           <a class="nav-link" href="explore">Explore</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {% if learn %}active{% endif %}">
           <a class="nav-link" href="learn">Learn</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {% if subscribe %}active{% endif %}">
           <a class="nav-link" href="subscribe">Subcribe</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Contact">Contact</a>
+          <a class="nav-link" href="/#Contact">Contact</a>
         </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
@@ -77,7 +95,7 @@
   </nav>
 </header>
 
- {% block main %}{% endblock %}
+{% block main %}{% endblock %}
 
 
 <!-- FOOTER -->
@@ -87,9 +105,5 @@
   <p>&copy; 2020 MoonRock, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 </footer>
 </body>
-{% if not blog %}
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="static/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="static/assets/dst/js/bootstrap.bundle.min.js"></script>
-        <script src="static/checkout/form-validation.js"></script></body>
-{% endif %}
+{% block checkoutjs %}{% endblock %}
 </html>
