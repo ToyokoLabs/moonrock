@@ -12,9 +12,15 @@ def indexblog():
 def carousel():
     return render_template('carousel.html', home=True)
 
-@app.route('/checkout')
-def checkout():
-    return render_template('checkout.html', checkout=True)
+@app.route('/checkout/<string:plan>')
+def checkout(plan):
+    price = {'k1': 15, 'k6': 72, 'k12':108}[plan]
+    return render_template('checkout.html', checkout=True, plan=plan, price=price)
+
+@app.route('/promo/<string:promo>', methods=['POST'])
+def promo(promo):
+    codes = {'MR10': '10', 'MR5':'5', 'MRHALFPRICE':'50%'}
+    return codes[promo]
 
 @app.route('/learn')
 def album():

@@ -29,7 +29,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
-<link href="static/assets/dst/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/assets/dst/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -51,10 +51,10 @@
     {% if blog %}
      <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">	
     <!-- Custom styles for this template -->	
-    <link href="static/blog/blog.css" rel="stylesheet">
+    <link href="/static/blog/blog.css" rel="stylesheet">
     {% endif %}
     {% if home %}
-    <link href="static/carousel/carousel.css" rel="stylesheet">
+    <link href="/static/carousel/carousel.css" rel="stylesheet">
     {% endif %}
 
   </head>
@@ -75,13 +75,13 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item {% if blog %}active{% endif %}">
-          <a class="nav-link" href="explore">Explore</a>
+          <a class="nav-link" href="/explore">Explore</a>
         </li>
         <li class="nav-item {% if learn %}active{% endif %}">
-          <a class="nav-link" href="learn">Learn</a>
+          <a class="nav-link" href="/learn">Learn</a>
         </li>
         <li class="nav-item {% if subscribe %}active{% endif %}">
-          <a class="nav-link" href="subscribe">Subcribe</a>
+          <a class="nav-link" href="/subscribe">Subcribe</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/#Contact">Contact</a>
