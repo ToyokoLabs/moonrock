@@ -12,9 +12,18 @@
         if (form.checkValidity() === false) {
           event.preventDefault()
           event.stopPropagation()
+          //alert('validated!')
         }
-        form.classList.add('was-validated')
+        else{
+          console.log("in ELSE FORMA VALIDATIOS JS: VALIDATED!!!!!")
+        }
+        form.classList.add('was-validated');
+        
+        //alert('validated!');
+
       }, false)
     })
   }, false)
-}())
+}()
+//alert('validated!')
+)

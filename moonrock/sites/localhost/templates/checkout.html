@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" method="post" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -139,14 +139,11 @@
             <label class="custom-control-label" for="credit">Credit card</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="debit">Debit card</label>
-          </div>
-          <div class="custom-control custom-radio">
             <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
             <label class="custom-control-label" for="paypal">PayPal</label>
           </div>
         </div>
+        <div id='carddata'>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="cc-name">Name on card</label>
@@ -180,8 +177,9 @@
             </div>
           </div>
         </div>
+      </div> <!-- end of id carddata -->
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        <button class="btn btn-primary btn-lg btn-block chkout" type="submit">Continue to checkout</button>
       </form>
     </div>
   </div>
@@ -195,7 +193,39 @@
         <script src="/static/checkout/form-validation.js"></script>
 
 <script>
+
+
+
+
+
 $(document).ready(function(){
+
+
+  $('#paypal').click(
+    function(){
+     $("#carddata").attr('hidden',true)
+      }
+    )
+
+    $('#credit').click(
+    function(){
+     $("#carddata").attr('hidden',false)
+      }
+    )
+
+    $('button.chkout2').click(
+      function(){
+        // get CC number
+        var xoxo = $("#cc-number").val();
+        var firstname = $("#firstName").val();
+        var lastname = $("#lastName").val();
+        var fullname = firstname + ' ' + lastname;
+        //window.location.href = "http://www.google.com";
+        console.log(window.location.href)
+        console.log('validated!!!!@!')
+      }
+    )
+
     $('button.promo').click(
     function(){
 
