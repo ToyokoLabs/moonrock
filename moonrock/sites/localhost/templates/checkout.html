@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" method="post" novalidate>
+      <form id="mainform" class="needs-validation" method="post" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -63,7 +63,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="text" class="form-control" id="username" placeholder="Username" required>
+            <input name="username" type="text" class="form-control" id="username" placeholder="Username" required>
             <div class="invalid-feedback" style="width: 100%;">
               Your username is required.
             </div>
@@ -114,7 +114,7 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" placeholder="" required>
+            <input name="zip" type="text" class="form-control" id="zip" placeholder="" required>
             <div class="invalid-feedback">
               Zip code required.
             </div>
@@ -147,7 +147,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="cc-name">Name on card</label>
-            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+            <input type="text" name="nameoncard" class="form-control" id="cc-name" placeholder="" required>
             <small class="text-muted">Full name as displayed on card</small>
             <div class="invalid-feedback">
               Name on card is required
@@ -155,16 +155,18 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="cc-number">Credit card number</label>
-            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            <input name="ccnumber" type="text" class="form-control" id="cc-number" placeholder="" required>
             <div class="invalid-feedback">
               Credit card number is required
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 mb-3">
+          <div class="col-md-4 mb-3">
             <label for="cc-expiration">Expiration</label>
-            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            <!-- <input type="text" class="form-control" id="cc-expiration" 
+              placeholder="" required> -->
+            <input type="month" class="form-control" id="cc-expiration" min="{{ccdate}}" value="{{ccdate}}" required>
             <div class="invalid-feedback">
               Expiration date required
             </div>
@@ -178,6 +180,8 @@
           </div>
         </div>
       </div> <!-- end of id carddata -->
+      <input id="grandtotal" name="total" type="hidden" value="{{price}}">
+
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block chkout" type="submit">Continue to checkout</button>
       </form>
@@ -213,57 +217,35 @@ $(document).ready(function(){
       }
     )
 
-    $('button.chkout2').click(
-      function(){
-        // get CC number
-        var xoxo = $("#cc-number").val();
-        var firstname = $("#firstName").val();
-        var lastname = $("#lastName").val();
-        var fullname = firstname + ' ' + lastname;
-        //window.location.href = "http://www.google.com";
-        console.log(window.location.href)
-        console.log('validated!!!!@!')
-      }
-    )
 
     $('button.promo').click(
     function(){
-
       var xoxo = $("#promocodeinput").val();
-      
-      
-      //alert("X")
-    
+      //alert("X")    
       $.post("/promo/"+xoxo, "", function(data, status){
-
 
         if (data.indexOf('%') > -1)
         { // % in data
-
-          var oriprice = {{price}};
-        
+          var oriprice = {{price}};        
           var newdata = data.replace('%', '');
           var discpercent = (oriprice * newdata) / 100;
-
-          $("div.promo").html("<li class='list-group-item d-flex justify-content-between bg-light promo'><div class='text-success'><h6 class='my-0'>Promo code</h6><small>EXAMPLECODE</small></div><span class='text-success'>-$" + discpercent + " ("+ data +")"+"</span></li>");
 
         // UPDATE TOTAL
         var result = oriprice - discpercent;
         $("#totalafterpromo").html('$'+result);
+        $("#grandtotal").val(result);
 
-
-        }
+      }
         else
         {
-
-
         $("div.promo").html("<li class='list-group-item d-flex justify-content-between bg-light promo'><div class='text-success'><h6 class='my-0'>Promo code</h6><small>EXAMPLECODE</small></div><span class='text-success'>-$" + data + "</span></li>");
-        
         // UPDATE TOTAL
         var oriprice = {{price}};
         var promo = data;
         var result = oriprice - promo;
-        $("#totalafterpromo").html('$'+result)
+        $("#totalafterpromo").html('$'+result);
+        $("#grandtotal").val(result);
+
         }
 
     });

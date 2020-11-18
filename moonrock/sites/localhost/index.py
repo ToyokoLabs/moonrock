@@ -1,6 +1,8 @@
-from flask import Flask, url_for, render_template
-app = Flask(__name__)
+from datetime import date
 
+from flask import Flask, request, url_for, render_template
+
+app = Flask(__name__)
 
 
 @app.route('/explore')
@@ -15,13 +17,17 @@ def carousel():
 @app.route('/checkout/<string:plan>', methods=['GET'])
 def checkout(plan):
     price = {'k1': 15, 'k6': 72, 'k12':108}[plan]
-    return render_template('checkout.html', checkout=True, plan=plan, price=price)
+    ccdate = '{}-{}'.format(date.today().year, date.today().month)
+    return render_template('checkout.html', 
+                           checkout=True, plan=plan, price=price,
+                           ccdate=ccdate)
 
 @app.route('/checkout/<string:plan>', methods=['POST'])
 def checkoutpost(plan):
     price = {'k1': 15, 'k6': 72, 'k12':108}[plan]
-    return "checkout WORKS"
-    return render_template('checkout.html', checkout=True, plan=plan, price=price)
+    print(request.form['total'])
+    # print(request.form['ccdate'])
+    return render_template('thankyou.html')
 
 @app.route('/promo/<string:promo>', methods=['POST'])
 def promo(promo):
