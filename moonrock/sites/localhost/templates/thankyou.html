@@ -1,36 +1,43 @@
 {% extends "base.tpl" %}
 
 {% block main %}
-<style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+<main role="main">
 
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-</style>
-<link href="/static/assets/dst/css/cover.css" rel="stylesheet">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1></h1>
+        <h1 class="cover-heading">Thank you for subscribing {{fullname}}</h1>
+<p></p>
+<p></p>
+        <div class="row">
+          <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="/static/assets/img/moontha.png" alt="moonpicture">
+          </div>
 
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading">Thank you for subscribing</h1>
-    <p class="lead">Your MoonRock is coming!</p>
-    <p class="lead">
-    </p>
+          <div class="col-md-6">
+            <p class="lead text-muted">We got your order for {{product}} at ${{total}}</p>
+            <p class="lead text-muted">You MoonRock is coming!</p>
+            <p>
+    
+            
 
-    <div class="row">
-      <div class="col-md-6">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="/static/assets/img/moontha.png" alt="astro">
+          </div>
+
+
+
+
+        </div>
+
+
+
+
+
+        </p>
       </div>
-    </div>
+    </section>
+  
 
+  
   </main>
 
-  {% endblock %}
+{% endblock %}

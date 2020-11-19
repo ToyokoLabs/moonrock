@@ -19,19 +19,16 @@ class MainElements(unittest.TestCase):
  
     def test_BasicHome(self):
         home_page = HomePage(driver)
-        title = home_page.main_title.text
+        title = home_page.logo_title.text
         # Check for main title
-        self.assertEqual(title, 'Dummy Page for Automation Testing')
+        self.assertEqual(title, 'MoonRock')
         # Check that title is displayed
-        self.assertTrue(home_page.main_title.is_displayed)
+        self.assertTrue(home_page.logo_title.is_displayed)
         # Check there are 2 order buttons
-        signup_button = home_page.signup_button
-        # CHECK PROPERTIES!!!
-
-        halfbox = home_page.halfbox
-        obn = len(halfbox)
-        self.assertEqual(obn,2, 
-            'There are {} halfbox and should be 2'.format(obn))
+        #order_buttons = home_page.order_buttons
+        #obn = len(order_buttons)
+        #self.assertEqual(obn,2, 
+        #    'There are {} order buttons and should be 2'.format(obn))
 
         
 

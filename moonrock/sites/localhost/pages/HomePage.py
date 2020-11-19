@@ -16,18 +16,19 @@ class HomePage(BasePage):
         super(HomePage, self).__init__(driver)
  
     @property
-    def main_title(self):
-        mt = self.driver.find_element(*home_page_map['maintitle'])
+    def logo_title(self):
+        logotitle = self.driver.find_element(*home_page_map['pagelogotitle'])
+        #logotitle.text 
         # Check properties
-        a = mt.find_element_by_tag_name('a')
-        if 'Playfair Display' in a.value_of_css_property('font-family'):
-            print('Playfair Display')
-        else:
-            print('NO Playfair Display')
-        print(a.value_of_css_property('font-family'))
+        #a = mt.find_element_by_tag_name('a')
+        #if 'Playfair Display' in a.value_of_css_property('font-family'):
+        #    print('Playfair Display')
+        #else:
+        #    print('NO Playfair Display')
+        #print(a.value_of_css_property('font-family'))
         #print(dir(mt))
 
-        return mt
+        return logotitle
 
     @property
     def signup_button(self):

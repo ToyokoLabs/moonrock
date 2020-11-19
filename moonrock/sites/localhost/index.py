@@ -24,15 +24,21 @@ def checkout(plan):
 
 @app.route('/checkout/<string:plan>', methods=['POST'])
 def checkoutpost(plan):
-    price = {'k1': 15, 'k6': 72, 'k12':108}[plan]
-    print(request.form['total'])
-    # print(request.form['ccdate'])
-    return render_template('thankyou.html')
+    if plan not in ('k1', 'k6', 'k12'):
+        exit()
+    product = 'MoonRock Kit ' + plan[1:]
+    fullname = request.form['firstname'] + ' ' + request.form['lastname']
+    total = request.form['total']
+    return render_template('thankyou.html', fullname=fullname,
+                             total=total, product=product)
 
 @app.route('/promo/<string:promo>', methods=['POST'])
 def promo(promo):
     codes = {'MR10': '10', 'MR5':'5', 'MRHALFPRICE':'50%'}
-    return codes[promo]
+    if promo in codes:
+        return codes[promo]
+    else:
+        return 'N/A'
 
 @app.route('/learn')
 def album():
