@@ -17,18 +17,24 @@ class MainElements(unittest.TestCase):
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
         driver.get(URL)
  
-    def test_BasicHome(self):
+    def test_Home(self):
         home_page = HomePage(driver)
         title = home_page.logo_title.text
         # Check for main title
         self.assertEqual(title, 'MoonRock')
         # Check that title is displayed
         self.assertTrue(home_page.logo_title.is_displayed)
-        # Check there are 2 order buttons
-        #order_buttons = home_page.order_buttons
-        #obn = len(order_buttons)
-        #self.assertEqual(obn,2, 
-        #    'There are {} order buttons and should be 2'.format(obn))
+        # Check for items in the carousel
+        carousel_items = home_page.carousel_items
+        carousel_items_nmbr = len(carousel_items)
+        self.assertEqual(carousel_items_nmbr , 3, 
+            'There are {} order buttons and should be 3'.format(
+                carousel_items_nmbr))
+        # Check for Carousel text
+        for carousel_item in carousel_items:
+            title = carousel_item[0]
+            print(title.get_attribute('innerHTML'))
+            #import pdb; pdb.set_trace()
 
         
 
