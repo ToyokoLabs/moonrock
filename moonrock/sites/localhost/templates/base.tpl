@@ -108,4 +108,5 @@
 </footer>
 </body>
 {% block checkoutjs %}{% endblock %}
+{% block carouseljs %}{% endblock %}
 </html>

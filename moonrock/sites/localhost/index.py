@@ -26,8 +26,12 @@ def checkout(plan):
 def checkoutpost(plan):
     if plan not in ('k1', 'k6', 'k12'):
         exit()
-    product = 'MoonRock Kit ' + plan[1:]
+    ccnumber = request.form['ccnumber']
+    nameoncard = request.form['ccnameoncard'].upper()
     fullname = request.form['firstname'] + ' ' + request.form['lastname']
+    if ccnumber != '1111111111111' or nameoncard != 'JOHN GALT':
+        return render_template('errorcard.html', fullname=fullname)
+    product = 'MoonRock Kit ' + plan[1:]
     total = request.form['total']
     return render_template('thankyou.html', fullname=fullname,
                              total=total, product=product)
