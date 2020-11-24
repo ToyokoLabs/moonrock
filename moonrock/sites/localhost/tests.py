@@ -16,25 +16,46 @@ class MainElements(unittest.TestCase):
         global driver
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
         driver.get(URL)
- 
+
+    def _carousel_content_check(self, items):
+        expected_items = (
+            ('MoonRock', 
+            'Join us on a voyage of discovery and explore and learn.',
+            'Join Us Today',
+            'rgba(255, 255, 255, 1)'),
+            ('Explore and Learn', 
+            'Bringing you everything under the Moon.', 
+            'Learn Now',
+            'rgba(255, 255, 255, 1)'),
+            ('MoonRock Kits', 
+            'Your purchase helps the MoonRock bring exciting learning experiences to everyone!.', 
+            'Subcribe Today',
+            'rgba(255, 255, 255, 1)')
+            )
+        for item, expected in zip(items, expected_items):
+            title = item['title'].get_attribute('innerHTML')
+            self.assertEqual(title, expected[0])
+            titlecolor = item['title'].value_of_css_property('color')
+            self.assertEqual(titlecolor, expected[3])
+            description = item['text'].get_attribute('innerHTML')
+            self.assertEqual(description, expected[1])
+            button = item['button'].get_attribute('innerHTML')
+            self.assertEqual(button, expected[2])
+            'rgba(255, 255, 255, 1)'
+
+
     def test_Home(self):
         home_page = HomePage(driver)
-        title = home_page.logo_title.text
-        # Check for main title
-        self.assertEqual(title, 'MoonRock')
-        # Check that title is displayed
-        self.assertTrue(home_page.logo_title.is_displayed)
+        home_page.validate_title()
+        #home_page.validate_carousel_items()
         # Check for items in the carousel
-        carousel_items = home_page.carousel_items
-        carousel_items_nmbr = len(carousel_items)
-        self.assertEqual(carousel_items_nmbr , 3, 
-            'There are {} order buttons and should be 3'.format(
-                carousel_items_nmbr))
-        # Check for Carousel text
-        for carousel_item in carousel_items:
-            title = carousel_item[0]
-            print(title.get_attribute('innerHTML'))
-            #import pdb; pdb.set_trace()
+        ##carousel_items = home_page.carousel_items
+        ##carousel_items_nmbr = len(carousel_items)
+        ##self.assertEqual(carousel_items_nmbr , 3, 
+        ##    'There are {} order buttons and should be 3'.format(
+        ##        carousel_items_nmbr))
+        # Check for Carousel Title
+        ##self._carousel_content_check(carousel_items)
 
         
 
