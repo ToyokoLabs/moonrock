@@ -1,11 +1,12 @@
 import os
+import time
 import unittest
  
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
 from config import DRIVER_PATH, URL
-
+from helper import users
 from pages.HomePage import HomePage
 
 
@@ -22,15 +23,33 @@ class MainElements(unittest.TestCase):
         home_page = HomePage(driver)
         home_page.validate_title()
         home_page.validate_carousel_items()
+        # Check clicking on menues
         subscribe_page = home_page.go_to_menu_iten('Subscribe')
         subscribe_page.validate_text()
 
-        ##self.assertEqual(carousel_items_nmbr , 3, 
-        ##    'There are {} order buttons and should be 3'.format(
-        ##        carousel_items_nmbr))
-        # Check for Carousel Title
 
+    def test_subscribe_to_box(self):
+        home_page = HomePage(driver)
+        subscribe_page = home_page.go_to_menu_iten('Subscribe')
+        # choose plan 1
+        card = subscribe_page.get_card('Kit1')
+        checkout_page = subscribe_page.click_get_started(card)
+        # Test with a valid user
+        user = users['valid_user']
+        checkout_page.fill_main_form(first_name = user['firstname'],
+                                    last_name = user['lastname'],
+                                    user_name = user['username'],
+                                    address1 = user['address1'],
+                                    country = user['country'],
+                                    state = user['state'],
+                                    zip = user['zip'],
+                                    name_on_card = user['name_on_card'],
+                                    number_on_card = user['number_on_card'],
+                                    cvv = user['cvv'])
+        thank_you_page = checkout_page.submit_main_form()
+        thank_you_page.check_successful_message(user['firstname'], user['lastname'])
         
+
 
     def tearDown(self):
         driver.quit()

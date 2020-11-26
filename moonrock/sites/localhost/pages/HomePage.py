@@ -101,7 +101,6 @@ class HomePage(BasePage):
                    'Subscribe': (3, SubscribePage(self.driver)), 
                    'Contact': (4,)
                    }
-        #import pdb; pdb.set_trace()
         chosen_menu_item = top_menu_items[items_d[menu_item][0]]
         chosen_menu_item.find_element_by_tag_name('a').click()
         return items_d[menu_item][1]
