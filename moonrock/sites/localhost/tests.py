@@ -1,6 +1,6 @@
 import os
 import time
-import unittest
+import pytest
  
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -9,11 +9,11 @@ from config import DRIVER_PATH, URL
 from helper import users
 from pages.HomePage import HomePage
 
+#unittest.TestCase
 
-
-class MainElements(unittest.TestCase):
+class TestMainElements():
  
-    def setUp(self):
+    def setup_class(self):
         global driver
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
         driver.get(URL)
@@ -27,12 +27,13 @@ class MainElements(unittest.TestCase):
         subscribe_page = home_page.go_to_menu_iten('Subscribe')
         subscribe_page.validate_text()
 
-
-    def test_subscribe_to_box(self):
+    @pytest.mark.parametrize("plan",['Kit1', 'Kit6', 'Kit12'])
+    def test_subscribe_to_box(self, plan):
+        # TODO: parametrize this.
         home_page = HomePage(driver)
         subscribe_page = home_page.go_to_menu_iten('Subscribe')
         # choose plan 1
-        card = subscribe_page.get_card('Kit1')
+        card = subscribe_page.get_card(plan)
         checkout_page = subscribe_page.click_get_started(card)
         # Test with a valid user
         user = users['valid_user']
@@ -51,11 +52,11 @@ class MainElements(unittest.TestCase):
         
 
 
-    def tearDown(self):
-        driver.quit()
+    #def teardown_method(self):
+    #    driver.quit()
  
  
-if __name__ == "__main__":
-    unittest.main()
+#if __name__ == "__main__":
+#    unittest.main()
 
 
