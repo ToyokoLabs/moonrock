@@ -31,6 +31,25 @@ class SubscribePage(BasePage):
         d = {'Kit1': 0, 'Kit6': 1, 'Kit12': 2}
         return cards[d[plan]]
 
+    def get_total_price(self, card):
+        """
+        Given a card, calculate total price (without discounts)
+        """
+        length = card.find_element(*subscribe_page_map['card_price'])
+        price = length.text.split(' ')[0]
+        assert price[0] == '$', 'Unit is {} and should be $'.format(price[0])
+        price = int(price[1:])
+        lapse = card.find_element(*subscribe_page_map['card_length'])
+        lapse_amount, lapse_unit = lapse.text.split(' ')
+        lapse_amount = int(lapse_amount)
+        if 'Month' in lapse_unit:
+            total_price = lapse_amount * price
+        elif 'Year' in lapse_unit:
+            total_price = lapse_amount * 12 * price
+        return total_price
+
+
+
     def click_get_started(self, card):
         checkout = card.find_element(*subscribe_page_map['get_started_button'])
         checkout.click()

@@ -1,3 +1,10 @@
+"""
+Run these tests with:
+
+pytest tests.py
+
+"""
+
 import os
 import time
 import pytest
@@ -9,7 +16,7 @@ from config import DRIVER_PATH, URL
 from helper import users
 from pages.HomePage import HomePage
 
-#unittest.TestCase
+
 
 class TestMainElements():
  
@@ -34,6 +41,7 @@ class TestMainElements():
         subscribe_page = home_page.go_to_menu_iten('Subscribe')
         # choose plan 1
         card = subscribe_page.get_card(plan)
+        total_price = subscribe_page.get_total_price(card)
         checkout_page = subscribe_page.click_get_started(card)
         # Test with a valid user
         user = users['valid_user']
@@ -48,15 +56,18 @@ class TestMainElements():
                                     number_on_card = user['number_on_card'],
                                     cvv = user['cvv'])
         thank_you_page = checkout_page.submit_main_form()
-        thank_you_page.check_successful_message(user['firstname'], user['lastname'])
+        thank_you_page.check_successful_message(user['firstname'], 
+                                                user['lastname'],
+                                                plan, 
+                                                total_price)
+        #import pdb; pdb.set_trace()
         
+#We got your order for MoonRock Kit 1 at $15
+#We got your order for MoonRock Kit 6 at $72
+#We got your order for MoonRock Kit 12 at $108
 
 
     #def teardown_method(self):
     #    driver.quit()
  
- 
-#if __name__ == "__main__":
-#    unittest.main()
-
 

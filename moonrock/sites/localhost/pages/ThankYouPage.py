@@ -17,7 +17,11 @@ class ThankYouPage(BasePage):
     def __init__(self, driver):
         super(ThankYouPage, self).__init__(driver)
 
-    def check_successful_message(self, firstname, lastname):
+    def check_successful_message(self, firstname, lastname, plan, totalprice):
         fullname = '{} {}'.format(firstname, lastname)
-        msg = self.driver.find_element(*thankyou_page_map['message_heading'])
+        kitnumber = plan[3:]
+        msg = self.driver.find_element(*thankyou_page_map['msg_heading'])
         assert msg.text == 'Thank you for subscribing {}'.format(fullname), msg.text
+        msg = self.driver.find_element(*thankyou_page_map['msg_subtext'])
+        assert msg.text == 'We got your order for MoonRock Kit {} at ${}'.\
+            format(kitnumber, totalprice), msg.text
