@@ -32,11 +32,13 @@ checkout_page_map = {'first_name': (By.ID, 'firstName'),
                     'number_on_card': (By.ID, 'cc-number'),
                     'cvv': (By.ID, 'cc-cvv'),
                     'checkout_button': (By.CSS_SELECTOR, 'button.chkout'),
+                    'user_name_error': (By.CSS_SELECTOR, 
+                      '#mainform > div:nth-child(2) > div > div.invalid-feedback'),
                     }
 
 thankyou_page_map = {'msg_heading': (By.CSS_SELECTOR, 
-                                     'div > h1.cover-heading'),
+                      'div > h1.cover-heading'),
                     'msg_subtext': (By.CSS_SELECTOR, 
-                                    'div > div.col-md-6 > p:nth-child(1)')
-                                    }
+                      'div > div.col-md-6 > p:nth-child(1)')
+                    }
 

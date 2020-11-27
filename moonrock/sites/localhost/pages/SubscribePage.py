@@ -59,9 +59,9 @@ class SubscribePage(BasePage):
     # Validations
 
     def validate_text(self):
-        title = self.title
+        title = self.title.text
         #import pdb; pdb.set_trace()
-        assert title.text == 'Subscription Boxes', title.text 
+        assert title == 'Subscription Boxes', title
 
 
 

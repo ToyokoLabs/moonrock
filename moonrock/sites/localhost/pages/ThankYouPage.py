@@ -25,3 +25,10 @@ class ThankYouPage(BasePage):
         msg = self.driver.find_element(*thankyou_page_map['msg_subtext'])
         assert msg.text == 'We got your order for MoonRock Kit {} at ${}'.\
             format(kitnumber, totalprice), msg.text
+
+    def check_error_message(self, firstname, lastname):
+        fullname = '{} {}'.format(firstname, lastname)
+        msg = self.driver.find_element(*thankyou_page_map['msg_heading'])
+        assert msg.text == 'Sorry {}, there was a credit card validation error'.\
+            format(fullname), msg.text
+
