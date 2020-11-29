@@ -1,0 +1,10 @@
+
+
+# Chromedriver path
+DRIVER_PATH = '/home/sbassi/projects/webdriverbinary/chromedriver'
+
+#Site URL
+URL = 'https://www.amazon.com'
+
+USER = 'INSERT_YOUR_USER'
+PASSWORD = 'INSERT_YOUR_PASSWORD'
