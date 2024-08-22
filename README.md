@@ -6,7 +6,9 @@ MoonRock is a Selenium based web automation testing framework.
 Install
 -------
 
+```
 pip install -r requirements.txt
+```
 
 To run MoonRock, we provide a fully functional website made with Flask that MoonRock will use for testing. To use MoonRock with this test site, you will need to open two terminals, one for the server of this website and another to run the tests.
 
