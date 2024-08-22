@@ -18,7 +18,9 @@ Download the driver for your Chrome version from https://chromedriver.chromium.o
 Unzip the file, store it in a folder and remember the path, will be used in the next step.
 You will need a file called config.py, a sample one is provided, you can mv the sample to config.py:
 
+```
 $ mv localconfig.py.SAMPLE config.py
+```
 
 And edit this file and modify the DRIVER_PATH variable with the path where the Selenium webdriver is installed.
 
@@ -30,11 +32,15 @@ Go to the directory of index.py file (in your_installation/moonrock/moonrock/sit
 
 Activate your virtualenv
 
+```
 export FLASK_APP=index.py
 
 (moonrock) $ flask run
+```
 
 Running the tests
 -----------------
 
+```
 pytest tests.py
+```
